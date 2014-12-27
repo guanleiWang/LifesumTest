@@ -2,6 +2,9 @@ import time
 from datetime import date
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 #Click "get started" and select unit name 
 def selectUnitName(browser, unitName):
@@ -82,10 +85,51 @@ def signup(browser, emailAddress, emailPassword, unitName="eu-system", gender="m
     setAccountINfor()
 
 def login(browser, emailAddress, password):
+    loginLink = browser.find_element_by_link_text("Log in")
+    loginLink.click()
+    time.sleep(1)
 
+    loginDiv = browser.find_element_by_xpath('//div[@id="login-modal"]')
+    emailInput = loginDiv.find_element_by_xpath('.//input[@id="id_username"]')
+    passwdInput = loginDiv.find_element_by_xpath('.//input[@id="id_password"]')
+   
+    emailInput.send_keys(emailAddress)
+    passwdInput.send_keys(password)
 
-def addFixedFood(browser, type):
+    loginButton = loginDiv.find_element_by_xpath('.//button[@id="loginToWebsite"]')
+    loginButton.click()
+    time.sleep(2)
+
+def addFoodToMeal(browser, mealType, foodKeyword):
+    try:
+        #Select "Add xxx" according to the meal type: breakfast, lunch...
+        addMealDiv = WebDriverWait(browser, 10).until(
+        EC.presence_of_element_located((By.ID, "track_header_dropdown"))
+        )
+    
+        dropdownIcon = addMealDiv.find_element_by_class_name("dropdown_icon_wrapper")
+        dropdownIcon.click()
+
+        meal = {"breakfast":1, "lunch":2, "dinner":3, "snack":4, "exercise":5}
+        i = meal[type]
+        mealLi = addMealDiv.find_element_by_xpath('.//li[2]')
+        mealLi.click()
+
+        #Search for food "bread"
+        searchInput = browser.find_element_by_id("search_field")
+        searchInput.send_keys(foodKeyword)
+        searchButton = browser.find_element_by_class_name("search_button")
+        searchButton.click()
+
+        #Add food to meal
+
+        return 0
+    finally:
+        return -1
 
 def trackWeight(browser, weight):
-
+    #comment
+    print "hi"
 def logout(browser):
+    #comment
+    print "hi"
