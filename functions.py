@@ -101,35 +101,70 @@ def login(browser, emailAddress, password):
     time.sleep(2)
 
 def addFoodToMeal(browser, mealType, foodKeyword):
-    try:
+   # try:
+        print "call addFoodToMeal"
         #Select "Add xxx" according to the meal type: breakfast, lunch...
         addMealDiv = WebDriverWait(browser, 10).until(
         EC.presence_of_element_located((By.ID, "track_header_dropdown"))
         )
+        print "find addMealDiv"
     
         dropdownIcon = addMealDiv.find_element_by_class_name("dropdown_icon_wrapper")
         dropdownIcon.click()
 
         meal = {"breakfast":1, "lunch":2, "dinner":3, "snack":4, "exercise":5}
-        i = meal[type]
+        i = meal[mealType]
         mealLi = addMealDiv.find_element_by_xpath('.//li[2]')
         mealLi.click()
+        print "select lunch"
 
         #Search for food "bread"
         searchInput = browser.find_element_by_id("search_field")
         searchInput.send_keys(foodKeyword)
         searchButton = browser.find_element_by_class_name("search_button")
         searchButton.click()
+        print "search for keyword"        
 
+        #Add the first returned result food into meal
+        resultDiv = browser.find_element_by_id("mCSB_1")
+        time.sleep(10)
+        firstLi = resultDiv.find_element_by_xpath('.//li[1]')
+        addButton = firstLi.find_element_by_xpath('.//button[1]')
+        addButton.click()
+        print "add food"
+        time.sleep(20)
         #Add food to meal
 
         return 0
-    finally:
-        return -1
+    #finally:
+     #   return -1
 
 def trackWeight(browser, weight):
-    #comment
-    print "hi"
+    time.sleep(10)
+    #print browser.page_source
+    headerDiv = browser.find_element_by_class_name("header")
+    meLink = headerDiv.find_element_by_xpath(".//li[2]")
+    meLink.click()
+    time.sleep(5)
+    
+    weightDiv = browser.find_element_by_id("weight-graph")
+    weightButton = weightDiv.find_element_by_xpath('.//button[1]')
+    weightButton.click()
+    time.sleep(5)
+  
+    #wait and assert
+    weightInput = browser.find_element_by_id("trackWeightValue")
+    weightInput.send_keys(weight)
+
+    updateButton = browser.find_element_by_id("trackWeightSubmit")
+    updateButton.click()
+
+
 def logout(browser):
-    #comment
-    print "hi"
+    #Check the user is logined before logout
+    headerDiv = browser.find_element_by_class_name("header")
+    loginP = headerDiv.find_element_by_xpath('.//p[@class="name"]')
+    if loginP.text == "Logged in":
+        loginP.click()
+        logoutLink = headerDiv.find_element_by_xpath('.//a[@id="logout"]')
+        logoutLink.click()
