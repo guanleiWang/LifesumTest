@@ -3,9 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-from functions import login, addFoodToMeal, trackWeight, logout
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
+from operations import signup, login, logout, addFoodToMeal, trackWeight
 
 class LifesumTest(unittest.TestCase):
     def setUp(self):
@@ -17,9 +17,20 @@ class LifesumTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    #Test user story of the test question required: signup, add breakfast/lunch,    track weight using weight tracker, then logout.
-    def test_signup_addFood_trackWeight_logout(self):
-        self.assertEqual(1,1)
+    def test_signup_logout_case1(self):
+        signup(self.browser, "testquestions123456@gmail.com","wgl010209")
+        logout()
+
+    def test_login_add_food_logout_case1(self):
+        login(self.browser, "wangguanlei.buaa@gmail.com","Wgl09026")
+        addFoodToMeal(self.browser, "breakfast", "bread")
+        addFoodToMeal(self.browser, "lunch", "fish")
+        logout(self.browser)
+
+    def test_login_track_weight_logout_case1(self):
+        login(self.browser, "wangguanlei.buaa@gmail.com","Wgl09026")
+        trackWeight(self.browser, 53)
+        logout(self.browser)
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(LifesumTest)
