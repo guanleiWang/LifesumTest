@@ -47,7 +47,14 @@ OK
 *** Please note:
    For test case: test_signup_logout_case1, which is used to test the new user sign up process, a new email address is needed every time it was run. So after the first run,if you want to continue running, please remove the user from backend database or modify line 17 of lifesum_test.py to provide a new email address. Or error message may received because of user already existed.
 
-6. Framework selection:
+6. Future improvements:
+1). Implement more detailed and visual logs and reports
+2). Organize test cases with Suite
+3). Add more test cases
+4). Implement data driven testing model
+5). Write a script to automate the env setup
+ 
+7. Framework selection:
 Beside the commercial web automation testing tools like heliumhq, ranorex, QTP and so on, selenium, sikuli and watir are the three most popular open-source web automation testing framework. Selenium is a one of the efficient open-source automated testing tool which provide a nice testing framework for testing wide variety of web application. Sikuli is one tool that uses images to generate test cases and automate testing for the application under consideratioin. Watir is a set of open source Ruby libraries released under BSD license to test the various web based applications. I choose selenium finally because of its advantages like:
 1). Similar to sikuli, selenium provides an IDE, a firefox add-on can do simple record-and-playback of interactioins with the browser.
 2). Selenium also provides Selenium WebDriver, a collection of language specific bindings to drive a browser. It can create robust, browser-based regression automation scripts. I use this feature to write the test cases.
@@ -56,7 +63,7 @@ Beside the commercial web automation testing tools like heliumhq, ranorex, QTP a
 5). Selenium also provides an advanced feature called Grid. It can scale and distribute scripts across many environments. So if the automation testing cost much time to run, we can empower this feature to distribute the testing to improve efficiency.
 6). Selenium is the choice for most companies currently, the support documentation and materials are substantial.
 
-7. Reference:
+8. Reference:
 1). Selenium: www.seleniumhq.org
 2). Sikuli: www.sikuli.org
 3). Watir: watir.com
