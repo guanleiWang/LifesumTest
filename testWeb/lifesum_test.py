@@ -14,7 +14,7 @@ class LifesumTest(unittest.TestCase):
         self.browser.quit()
 
     def test_signup_logout_case1(self):
-        result_signup = eu_signup(self.browser, "wally1109test09861@gmail.com",
+        result_signup = eu_signup(self.browser, "wally1109test0987641@gmail.com",
                         "wgl010209")
         if result_signup:
             self.fail("Can't sign up successfully!")
