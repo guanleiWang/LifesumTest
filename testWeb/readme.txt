@@ -48,6 +48,8 @@ OK
 
 ####################
    NOTE: Test case - test_signup_logout_case1, which is used to test the new user sign up process, a new email address is needed every time it was run. So after the first run,if you want to continue running, please remove the user from backend database or modify line 17 of lifesum_test.py to provide a new email address. Or error message may received because of user already existed.
+
+   NOTE: I added a video file examples.ogv recorded by ubuntu recordMyDesktop to show the running of the test cases. If you can't play it on ubuntu, please run #sudo apt-get install gtk-recordmydesktop to install the software.
 ####################
 
 6. What can be done in the future
