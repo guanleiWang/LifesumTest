@@ -1,4 +1,5 @@
-1. Description: These scripts are used to test lifesum website functionalities like: login, sign up, add food, track weight. They are implemented with Python(2.7.6), selenium(2.44) and unittest. I ran these test with Chrome browser.
+1. Description 
+   These scripts are to test lifesum website functionalities like: login, sign up, add food, track weight. Python(2.7.6) and selenium(2.44) are used for implementation. The target web browser is Chrome.
 
 2. Environment setup(for ubuntu 14.04 desktop edition):
 1). Install python pip, run:
@@ -18,22 +19,22 @@
        unzip chromedriver_linux64.zip -d /usr/local/chromedriver
 
 3. Design pattern: Page Object Model and Python modular programming
-   lifesum_test.py is the main script to launch the test cases and report test result.It calls functions from operations.py.
-   operations.py is a library for common functions like: login, sign up...
-   lifesum_page.py is the only place knowing the structure of the lifesum web page, it provides basic functionalities to operations.py.
+   lifesum_test.py - the main script to launch the test cases and report test result.It calls functions from operations.py.
+   operations.py   - a library for common functions like: login, sign up...
+   lifesum_page.py - the only place knowing the structure of the lifesum web page, it provides basic functionalities to operations.py.
 
-4. Test cases explaination:
+4. Test cases: 
    Totally there are 3 test cases in lifesum_test.py currently.
-1). test_signup_logout_case1
-    This test the new user sign up process, and then logout after sign up.
-2). test_login_add_food_logout_case1:
-    This test existing user login, add food to  breakfast and lunch, then logout.
-3). test_login_track_weight_logout_case1:
-    This test existing user login, update weight with weight tracker, then logout.
+Case 1 - test_signup_logout_case1
+    To test the new user sign up process, and then logout after sign up.
+Case 2 - test_login_add_food_logout_case1:
+    To test existing user login, add food to  breakfast and lunch, then logout.
+Case 3 - test_login_track_weight_logout_case1:
+    To test existing user login, update weight with weight tracker, then logout.
 
 5. How to run:
    #python lifesum_test.py
-   It will execute 3 test cases within unittest framework and report test result like:
+   It will execute 3 test cases and report test result like:
 "
 test_login_add_food_logout_case1 (__main__.LifesumTest) ... ok
 test_login_track_weight_logout_case1 (__main__.LifesumTest) ... ok
@@ -44,10 +45,12 @@ Ran 3 tests in 159.399s
 
 OK
 "
-*** Please note:
-   For test case: test_signup_logout_case1, which is used to test the new user sign up process, a new email address is needed every time it was run. So after the first run,if you want to continue running, please remove the user from backend database or modify line 17 of lifesum_test.py to provide a new email address. Or error message may received because of user already existed.
 
-6. Future improvements:
+####################
+   NOTE: Test case - test_signup_logout_case1, which is used to test the new user sign up process, a new email address is needed every time it was run. So after the first run,if you want to continue running, please remove the user from backend database or modify line 17 of lifesum_test.py to provide a new email address. Or error message may received because of user already existed.
+####################
+
+6. What can be done in the future
 1). Implement more detailed and visual logs and reports
 2). Organize test cases with Suite
 3). Add more test cases
@@ -55,7 +58,7 @@ OK
 5). Write a script to automate the env setup
  
 7. Framework selection:
-Beside the commercial web automation testing tools like heliumhq, ranorex, QTP and so on, selenium, sikuli and watir are the three most popular open-source web automation testing framework. Selenium is a one of the efficient open-source automated testing tool which provide a nice testing framework for testing wide variety of web application. Sikuli is one tool that uses images to generate test cases and automate testing for the application under consideratioin. Watir is a set of open source Ruby libraries released under BSD license to test the various web based applications. I choose selenium finally because of its advantages like:
+Besides the commercial web automation testing tools like heliumhq, ranorex, QTP and so on, selenium, sikuli and watir are the three most popular open-source web automation testing framework. Selenium is a one of the efficient open-source automated testing tool which provide a nice testing framework for testing wide variety of web application. Sikuli is one tool that uses images to generate test cases and automate testing for the application under consideratioin. Watir is a set of open source Ruby libraries released under BSD license to test the various web based applications. I choose selenium finally because of its advantages like:
 1). Similar to sikuli, selenium provides an IDE, a firefox add-on can do simple record-and-playback of interactioins with the browser.
 2). Selenium also provides Selenium WebDriver, a collection of language specific bindings to drive a browser. It can create robust, browser-based regression automation scripts. I use this feature to write the test cases.
 3). Selenium supports many operating systems and browsers. It supports Windows, Linux and Apple OS X. It supports browsers like firefox, Chrome, IE, Safari and Opera. So it can test different browser support for lifesume.com.
@@ -67,5 +70,4 @@ Beside the commercial web automation testing tools like heliumhq, ranorex, QTP a
 1). Selenium: www.seleniumhq.org
 2). Sikuli: www.sikuli.org
 3). Watir: watir.com
-4). A comparasion between selenium, sikuli and watir: www.ripublication.com/irph/ijict_spl/ijictv4n15spl_04.pdf
 
